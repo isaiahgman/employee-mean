@@ -5,7 +5,7 @@
         what are the login credentials, and how do we set those up
         what do those database interactions and queries look like
 
-    At first we are importing mongodb, which makes sense
+    At first, we are importing mongodb, which makes sense
     But we are also importing the Employee model that we just created
         we are going to use that somehow in the database interactions
 
@@ -14,7 +14,7 @@
 
     Next, in the connect to database function, we go ahead and grab all the employees I think
 
-    finally we have a schema valiation, which makes sure that the data is in the shape that we
+    finally we have a schema validation, which makes sure that the data is in the shape that we
     have defined in employee.ts
 */
 
@@ -41,7 +41,7 @@ async function applySchemaValidation(db: mongodb.Db) {
         $jsonSchema: {
             bsonType: "object",
             required: ["name", "position", "level"],
-            additonalProperties: false,
+            additionalProperties: false,
             properties: {
                 name: {
                     bsonType: "string",
@@ -64,7 +64,7 @@ async function applySchemaValidation(db: mongodb.Db) {
         collMod: "employees",
         validator: jsonSchema
     }).catch(async (error: mongodb.MongoServerError) => {
-        if (error.codeName !== "NamespaceNotFound") {
+        if (error.codeName === "NamespaceNotFound") {
             await db.createCollection("employees", {validator: jsonSchema});
         }
     });
