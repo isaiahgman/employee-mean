@@ -53,8 +53,12 @@ employeeRouter.post("/", async (req, res) => {
             res.status(500).send("Failure to create a new employee.");
         }
     } catch (error) {
-        console.log(error);
-        res.status(400).send(error instanceof Error ? error.message : "Unknown error");
+        if (error instanceof Error && (error as any).errInfo) {
+            const errInfo = (error as any).errInfo;
+            console.error(JSON.stringify(errInfo.details, null, 2));
+        } else {
+            console.error('An unknown error occurred:', error);
+        }
     }
 });
 
@@ -86,7 +90,7 @@ employeeRouter.delete("/:id", async (req, res) => {
         const result = await collections?.employees?.deleteOne(query);
 
         if (result && result.deletedCount) {
-            res.status(202).send(`Removed an employee: ID ?{id}.`);
+            res.status(202).send(`Removed an employee: ID ${id}.`);
         } else if (!result) {
             res.status(400).send(`Failed to remove an employee: ID ${id}.`);
         } else if (!result.deletedCount) {
