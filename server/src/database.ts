@@ -1,24 +1,3 @@
-/*
-    This is where we are going to connect to the DB
-    Some questions that I already have are:
-        how do we connect
-        what are the login credentials, and how do we set those up
-        what do those database interactions and queries look like
-
-    At first, we are importing mongodb, which makes sense
-    But we are also importing the Employee model that we just created
-        we are going to use that somehow in the database interactions
-
-    There are a few things to think through here.
-    We are connecting to the database using a uri, where does that uri come from, not sure yet.
-
-    Next, in the connect to database function, we go ahead and grab all the employees I think
-
-    finally we have a schema validation, which makes sure that the data is in the shape that we
-    have defined in employee.ts
-*/
-
-
 import * as mongodb from "mongodb";
 import {Employee} from "./employee";
 

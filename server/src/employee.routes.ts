@@ -1,15 +1,3 @@
-/*
-    This is an important piece
-    Here we have the first endpoint in the project, which is the empty path get.
-
-    Here we can see the way that we can define endpoints in express, and it's pretty simple
-
-    Some things to note before we move on:
-        Defining a new endpoint is easy
-        We have the req right there, and we use the res to respond back to the caller
-        We are using async, which basically means that
-*/
-
 import * as express from "express";
 import {collections} from "./database";
 import {ObjectId} from "mongodb";
