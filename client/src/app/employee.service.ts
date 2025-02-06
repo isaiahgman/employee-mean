@@ -8,7 +8,7 @@ import {HttpClient} from "@angular/common/http";
 export class EmployeeService {
     employees$ = signal<Employee[]>([]);
     employee$ = signal<Employee>({} as Employee);
-    private url = 'http://localhost:8000';
+    private url = 'http://107.21.85.69';
 
     constructor(private httpClient: HttpClient) {
     }
